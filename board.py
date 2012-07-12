@@ -11,7 +11,7 @@ class Board(object):
         return self.board[node].keys()
     
     def get_legal_moves(self):
-        return [node_num for node_num in self.board.nodes() if node_num.has_key('label')]
+        return [node_num for node_num in self.board.nodes() if self.board[node_num].has_key('label')]
         
     def _get_cycle(self):
         return networkx.cycle_basis(self.board)
@@ -23,7 +23,7 @@ class Board(object):
         for i in xrange(len(self.players)):
             observation = deepcopy(self.board)
             for othernode in self.board[node].keys():
-                stuff
+                # stuff
             observations.append(observation)
         return observations
         
@@ -39,7 +39,7 @@ class Board(object):
             outB[node2]['player'] = self.players[player]
             return (outA, outB)
             
-        if node1 == node2 or not (node1 in self.get_legal_modes() and node2 in self.get_legal_modes()):
+        if node1 == node2 or not (node1 in self.get_legal_moves() and node2 in self.get_legal_moves()):
             raise ValueError("that was a bad move")
         self.board.add_edge(node1, node2)
         self.board[node1][node2]['player']=player
@@ -48,3 +48,6 @@ class Board(object):
     def set_resolution(self, observation):
         self.board = observation
         #check for victory
+    
+    def draw(this_board):
+        return ""
